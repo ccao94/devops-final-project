@@ -1,0 +1,22 @@
+# Maven / Java
+target/
+*.class
+*.log
+
+# IDE and OS files
+.idea/
+.vscode/
+.metals/
+*.iml
+.DS_Store
+
+# environment files and secrets
+.env
+*.env
+*.secret.tfvars
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
