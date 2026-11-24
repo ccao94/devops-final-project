@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Notes</title>
+</head>
+<body>
+  <h1>Notes</h1>
+  <input id="content" type="text">
+  <button onclick="add()">Ajouter</button>
+  <ul id="list"></ul>
+  <script>
+    async function load() {
+      const res = await fetch('/api/notes');
+      const notes = await res.json();
+      document.getElementById('list').innerHTML = notes.map(n => '<li>' + n.content + '</li>').join('');
+    }
+    async function add() {
+      const input = document.getElementById('content');
+      await fetch('/api/notes', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({content: input.value})
+      });
+      input.value = '';
+      load();
+    }
+    load();
+  </script>
+</body>
+</html>
